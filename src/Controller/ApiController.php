@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Domain\ApiResponse;
-use App\Domain\Bus\Command\Command;
 use App\Domain\Bus\Query\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -24,10 +23,6 @@ class ApiController extends AbstractController
     }
 
     protected function ask(Query $query): void
-    {
-    }
-
-    protected function dispatch(Command $command): void
     {
     }
 }

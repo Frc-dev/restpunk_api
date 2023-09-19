@@ -14,6 +14,7 @@ class SearchByFieldsQueryHandler implements QueryHandler
 
     public function __invoke(SearchByFieldsQuery $searchByFieldsQuery): SearchByFieldsResponse
     {
-        return $this->searchByFields->__invoke();
+        $fields = $searchByFieldsQuery->getFields();
+        return $this->searchByFields->__invoke($fields);
     }
 }

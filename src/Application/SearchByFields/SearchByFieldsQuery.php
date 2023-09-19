@@ -7,13 +7,13 @@ use App\Domain\Bus\Query\Query;
 class SearchByFieldsQuery implements Query
 {
     public function __construct(
-        private readonly string $filters
+        private readonly array $fields
     )
     {
     }
 
-    public function getFilters(): string
+    public function getFields(): array
     {
-        return $this->filters;
+        return $this->fields;
     }
 }
