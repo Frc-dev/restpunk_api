@@ -7,7 +7,7 @@ trait PunkApiData
     private string $baseApiUrl = 'https://api.punkapi.com/v2/ ';
     private string $baseBeersUrl = 'beers';
 
-    //fields as we define in controller do not have to match the ones used in the API
+    //fields as we define in controller do not necessarily match the ones used in the API
     private array $apiFields = [
         'food'
     ];

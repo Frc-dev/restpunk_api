@@ -5,7 +5,6 @@ namespace App\Domain\Api\PunkApi;
 use App\Application\SearchByFields\SearchByFieldsResponse;
 use App\Application\SearchById\SearchByIdResponse;
 use App\Domain\Api\ApiRequest;
-use App\Domain\Bus\Query\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -28,6 +27,7 @@ class PunkApiRequest implements ApiRequest
         $params = $this->buildParams($fields);
 
         $requestUrl = $baseUrl.$params;
+
         $response = $this->callApi($requestUrl);
 
         return $this->dataMapper->buildSearchByFieldsResponseFromApiResponse($response);
@@ -38,6 +38,7 @@ class PunkApiRequest implements ApiRequest
         $baseUrl = $this->buildBaseUrl();
 
         $requestUrl = $baseUrl.sprintf('/%s', $id);
+
         $response = $this->callApi($requestUrl);
 
         return $this->dataMapper->buildSearchByIdResponseFromApiResponse($response);

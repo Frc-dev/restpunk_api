@@ -4,12 +4,14 @@ namespace App\Domain;
 
 use App\Domain\DomainError\ValidationFailedException;
 use App\Domain\Trait\Fields;
+use App\Domain\Trait\RegexPatterns;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validation;
 
 class FieldsValidator
 {
     use Fields;
+    use RegexPatterns;
 
     public function validate(mixed $input): void
     {
@@ -19,7 +21,7 @@ class FieldsValidator
             $this->fieldFood => [
                 new Assert\NotBlank(),
                 new Assert\Type(['type' => 'string']),
-                new Assert\Regex(['pattern' => '/^[a-zA-Z0-9 .\-]+$/'])
+                new Assert\Regex(['pattern' => $this->onlyAlphanumeric])
             ]
         ]);
 

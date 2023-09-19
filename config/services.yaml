@@ -22,3 +22,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # set alias to reference implementation of interface in class-by-class basis while keeping
+    # interface as dependency for easy testing
+    app.api.punk:
+        alias: App\Domain\Api\PunkApi\PunkApiRequest
+        public: true
