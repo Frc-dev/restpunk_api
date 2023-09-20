@@ -44,7 +44,7 @@ class FieldsValidatorTest extends UnitTestCase
         return [
             [SearchFieldsMother::withFood('tacos and beer')],
             [SearchFieldsMother::withFood('hershey\'s chocolate syrup 300ml sauce')],
-            [SearchFieldsMother::withFood('paella valenciana con arroz y garrofón')]
+            [SearchFieldsMother::withFood('paella valenciana con arroz y garrofón')],
         ];
     }
 
@@ -53,7 +53,7 @@ class FieldsValidatorTest extends UnitTestCase
         return [
             [SearchFieldsMother::withFood('<?php echo>>')],
             [SearchFieldsMother::withFood('{}(*};')],
-            [SearchFieldsMother::withFood('')]
+            [SearchFieldsMother::withFood('')],
         ];
     }
 }

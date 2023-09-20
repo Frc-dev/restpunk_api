@@ -5,7 +5,6 @@ namespace App\Tests\Unit\Application\SearchById;
 use App\Application\SearchById\SearchById;
 use App\Application\SearchById\SearchByIdQueryHandler;
 use App\Domain\SearchResponseCollection;
-use App\Tests\Unit\Application\SearchById\SearchByIdQueryMother;
 use App\Tests\Unit\Domain\UnitTestCase;
 
 class SearchByIdQueryHandlerTest extends UnitTestCase

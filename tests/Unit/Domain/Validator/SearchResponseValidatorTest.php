@@ -42,7 +42,7 @@ class SearchResponseValidatorTest extends UnitTestCase
     public function validFields(): array
     {
         return [
-            [SearchByFieldsResponseMother::default()]
+            [SearchByFieldsResponseMother::default()],
         ];
     }
 

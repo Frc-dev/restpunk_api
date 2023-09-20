@@ -13,8 +13,7 @@ class SearchResponseMother
         string $firstBrewed,
         string $description,
         string $image
-    ): SearchResponse
-    {
+    ): SearchResponse {
         $response = new SearchResponse();
 
         $response->setId($id)

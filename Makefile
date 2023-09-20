@@ -16,3 +16,4 @@ tests-api:
 
 cs-fix:
 	tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src
+	tools/php-cs-fixer/vendor/bin/php-cs-fixer fix tests

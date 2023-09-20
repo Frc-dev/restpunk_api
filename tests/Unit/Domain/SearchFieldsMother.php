@@ -19,7 +19,7 @@ class SearchFieldsMother
     {
         //we can add more parameters and start them by default with valid values when needed
         $fields = [
-            'food' => $food
+            'food' => $food,
         ];
 
         return self::create($fields);

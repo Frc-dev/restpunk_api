@@ -10,7 +10,7 @@ class SearchByFieldsQueryMother
     public static function create(SearchFields $fields): SearchByFieldsQuery
     {
         return new SearchByFieldsQuery(
-           $fields
+            $fields
         );
     }
 
