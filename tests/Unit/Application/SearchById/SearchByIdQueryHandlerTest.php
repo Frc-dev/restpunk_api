@@ -18,7 +18,8 @@ class SearchByIdQueryHandlerTest extends UnitTestCase
         $this->handler = new SearchByIdQueryHandler(
             new SearchById(
                 $this->apiRequest(),
-                $this->searchResponseValidator()
+                $this->searchResponseValidator(),
+                $this->filesystemAdapter()
             )
         );
     }

@@ -19,7 +19,8 @@ class SearchByFieldsQueryHandlerTest extends UnitTestCase
             new SearchByFields(
                 $this->apiRequest(),
                 $this->fieldsValidator(),
-                $this->searchResponseValidator()
+                $this->searchResponseValidator(),
+                $this->filesystemAdapter(),
             )
         );
     }

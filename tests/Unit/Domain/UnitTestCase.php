@@ -9,12 +9,14 @@ use App\Domain\Validator\FieldsValidator;
 use App\Domain\Validator\SearchResponseValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class UnitTestCase extends TestCase
 {
     private $apiRequest;
     private $fieldsValidator;
     private $searchResponseValidator;
+    private $filesystemAdapter;
 
     protected function mock(string $className): MockObject
     {
@@ -36,6 +38,11 @@ class UnitTestCase extends TestCase
         return $this->searchResponseValidator = $this->searchResponseValidator ?: $this->mock(SearchResponseValidator::class);
     }
 
+    protected function filesystemAdapter(): MockObject | FilesystemAdapter
+    {
+        return $this->filesystemAdapter = $this->filesystemAdapter ?: $this->mock(FilesystemAdapter::class);
+    }
+
     protected function shouldReturnValidFields($result): void
     {
         $this->fieldsValidator()
@@ -46,19 +53,19 @@ class UnitTestCase extends TestCase
 
     protected function shouldSearchByFieldsAndReturnApiResponse($fields, $result): void
     {
-        $this->apiRequest()
+        $this->filesystemAdapter()
             ->expects(self::once())
-            ->method('searchByFields')
-            ->with($fields)
+            ->method('get')
+            ->with('search_fields_cache')
             ->willReturn($result);
     }
 
     protected function shouldSearchByIdAndReturnApiResponse($id, $result): void
     {
-        $this->apiRequest()
+        $this->filesystemAdapter()
             ->expects(self::once())
-            ->method('searchById')
-            ->with($id)
+            ->method('get')
+            ->with('search_id_cache')
             ->willReturn($result);
     }
 

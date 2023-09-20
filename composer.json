@@ -10,6 +10,7 @@
         "ext-iconv": "*",
         "ext-xml": "*",
         "behat/behat": "^3.13",
+        "symfony/cache": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
