@@ -2,8 +2,8 @@
 
 namespace App\Application\SearchById;
 
-use App\Application\SearchResponseValidator;
 use App\Domain\Api\ApiRequest;
+use App\Domain\Validator\SearchResponseValidator;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 
 class SearchById

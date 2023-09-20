@@ -2,9 +2,10 @@
 
 namespace App\Application\SearchByFields;
 
-use App\Application\SearchResponseValidator;
 use App\Domain\Api\ApiRequest;
-use App\Domain\FieldsValidator;
+use App\Domain\SearchFields;
+use App\Domain\Validator\FieldsValidator;
+use App\Domain\Validator\SearchResponseValidator;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 
 class SearchByFields
@@ -19,11 +20,11 @@ class SearchByFields
     {
     }
 
-    public function __invoke(array $fields): SearchByFieldsResponse
+    public function __invoke(SearchFields $fields): SearchByFieldsResponse
     {
-        $this->fieldsValidator->validate($fields);
+        $this->fieldsValidator->validateFields($fields);
 
-        $response = $this->apiRequest->searchByFields($fields);
+        $response = $this->apiRequest->searchByFields($fields->toArray());
 
         $this->searchResponseValidator->validateSearchResponse($response);
 

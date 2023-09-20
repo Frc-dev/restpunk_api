@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Application\SearchByFields\SearchByFieldsQuery;
 use App\Application\SearchById\SearchByIdQuery;
+use App\Domain\SearchFields;
 use http\Env\Request;
 use App\Domain\Trait\Fields;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,9 +18,8 @@ class SearchController extends ApiController
     #[Route(path: '/search', name:'search_by_fields', methods: ['GET'])]
     public function searchByFields(Request $request): string
     {
-        $fields = [
-            $this->fieldFood => $request->get($this->fieldFood)
-        ];
+        $fields = new SearchFields();
+        $fields->setFood($request->get($this->fieldFood));
 
         $searchByFieldQuery = new SearchByFieldsQuery($fields);
         $searchByFieldResponse = $this->queryBus->dispatch($searchByFieldQuery);

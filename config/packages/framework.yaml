@@ -18,6 +18,7 @@ framework:
     php_errors:
         log: true
 
+    validation: { enabled: true }
 when@test:
     framework:
         test: true
