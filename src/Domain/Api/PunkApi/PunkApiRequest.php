@@ -2,9 +2,8 @@
 
 namespace App\Domain\Api\PunkApi;
 
-use App\Application\SearchByFields\SearchByFieldsResponse;
-use App\Application\SearchById\SearchByIdResponse;
 use App\Domain\Api\ApiRequest;
+use App\Domain\SearchResponseCollection;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -20,7 +19,7 @@ class PunkApiRequest implements ApiRequest
     ) {
     }
 
-    public function searchByFields(array $fields): SearchByFieldsResponse
+    public function searchByFields(array $fields): SearchResponseCollection
     {
         $baseUrl = $this->buildBaseUrl();
         $params = $this->buildParams($fields);
@@ -29,10 +28,10 @@ class PunkApiRequest implements ApiRequest
 
         $response = $this->callApi($requestUrl);
 
-        return $this->dataMapper->buildSearchByFieldsResponseFromApiResponse($response);
+        return $this->dataMapper->buildSearchByFieldsResponse($response);
     }
 
-    public function searchById(int $id): SearchByIdResponse
+    public function searchById(int $id): SearchResponseCollection
     {
         $baseUrl = $this->buildBaseUrl();
 
@@ -40,7 +39,7 @@ class PunkApiRequest implements ApiRequest
 
         $response = $this->callApi($requestUrl);
 
-        return $this->dataMapper->buildSearchByIdResponseFromApiResponse($response);
+        return $this->dataMapper->buildSearchByIdResponse($response);
     }
 
     private function buildBaseUrl(): string
@@ -55,7 +54,7 @@ class PunkApiRequest implements ApiRequest
         //build get params from fields that match PunkApi allowed fields in the trait
         foreach ($fields as $name => $value) {
             if (in_array($name, $this->apiFields)) {
-                $params .= sprintf('?%s=%d', $name, $value);
+                $params .= sprintf('?%s=%s', $name, $value);
             }
         }
 

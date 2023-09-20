@@ -2,14 +2,13 @@
 
 namespace App\Domain\Api;
 
-use App\Application\SearchByFields\SearchByFieldsResponse;
-use App\Application\SearchById\SearchByIdResponse;
+use App\Domain\SearchResponseCollection;
 
 interface ApiRequest
 {
-    public function searchByFields(array $fields): SearchByFieldsResponse;
+    public function searchByFields(array $fields): SearchResponseCollection;
 
-    public function searchById(int $id): SearchByIdResponse;
+    public function searchById(int $id): SearchResponseCollection;
 
     public function callApi(string $url, string $method): array;
 }

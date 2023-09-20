@@ -1,0 +1,10 @@
+default:
+  suites:
+    default:
+
+  extensions:
+    Imbo\BehatApiExtension:
+        apiClient:
+            base_uri: http://localhost:8000
+            timeout: 5.0
+            verify: false

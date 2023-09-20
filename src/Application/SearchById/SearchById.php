@@ -3,45 +3,48 @@
 namespace App\Application\SearchById;
 
 use App\Domain\Api\ApiRequest;
+use App\Domain\SearchResponseCollection;
 use App\Domain\Validator\SearchResponseValidator;
 use Psr\Cache\InvalidArgumentException;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\DependencyInjection\Attribute\Target;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
 class SearchById
 {
     public function __construct(
         //this tells ApiRequest interface to implement the class defined in the services.yaml
-        #[Target('app.api.punk')]
+        #[Autowire(service: 'app.api.punk')]
         private readonly ApiRequest $apiRequest,
         private readonly SearchResponseValidator $searchResponseValidator,
-        private readonly FilesystemAdapter $cache
+        private readonly CacheInterface $cache
     ) {
     }
 
     /**
      * @throws InvalidArgumentException
      */
-    public function __invoke(int $id): SearchByIdResponse
+    public function __invoke(int $id): SearchResponseCollection
     {
         $response = $this->getSearchByIdResponse($id);
 
-        $this->searchResponseValidator->validateSearchResponse($response);
+        foreach ($response as $item) {
+            $this->searchResponseValidator->validateSearchResponse($item);
+        }
 
         return $response;
     }
 
     /**
      * @param int $id
-     * @return SearchByIdResponse
+     * @return SearchResponseCollection
      * @throws InvalidArgumentException
      */
-    public function getSearchByIdResponse(int $id): SearchByIdResponse
+    public function getSearchByIdResponse(int $id): SearchResponseCollection
     {
         return $this->cache->get(
-            'search_id_cache',
-            function (ItemInterface $item) use ($id): SearchByIdResponse {
+            'search_id_cache:' . json_encode($id),
+            function (ItemInterface $item) use ($id): SearchResponseCollection {
                 $item->expiresAfter(3600);
 
                 return $this->apiRequest->searchById($id);

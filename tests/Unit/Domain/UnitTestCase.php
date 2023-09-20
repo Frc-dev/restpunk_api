@@ -56,7 +56,7 @@ class UnitTestCase extends TestCase
         $this->filesystemAdapter()
             ->expects(self::once())
             ->method('get')
-            ->with('search_fields_cache')
+            ->with('search_fields_cache:'.json_encode($fields))
             ->willReturn($result);
     }
 
@@ -65,7 +65,7 @@ class UnitTestCase extends TestCase
         $this->filesystemAdapter()
             ->expects(self::once())
             ->method('get')
-            ->with('search_id_cache')
+            ->with('search_id_cache:'.$id)
             ->willReturn($result);
     }
 

@@ -4,7 +4,7 @@ namespace App\Domain\Api\PunkApi;
 
 trait PunkApiData
 {
-    private string $baseApiUrl = 'https://api.punkapi.com/v2/ ';
+    private string $baseApiUrl = 'https://api.punkapi.com/v2/'  ;
     private string $baseBeersUrl = 'beers';
 
     //fields as we define in controller do not necessarily match the ones used in the API
@@ -17,5 +17,5 @@ trait PunkApiData
     private string $apiTagline = 'tagline';
     private string $apiFirstBrewed = 'first_brewed';
     private string $apiDescription = 'description';
-    private string $apiImage = 'image';
+    private string $apiImage = 'image_url';
 }

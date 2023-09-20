@@ -4,6 +4,7 @@ namespace App\Tests\Unit\Application\SearchById;
 
 use App\Application\SearchById\SearchById;
 use App\Application\SearchById\SearchByIdQueryHandler;
+use App\Domain\SearchResponseCollection;
 use App\Tests\Unit\Application\SearchById\SearchByIdQueryMother;
 use App\Tests\Unit\Domain\UnitTestCase;
 
@@ -30,10 +31,12 @@ class SearchByIdQueryHandlerTest extends UnitTestCase
     {
         $query = SearchByIdQueryMother::create();
         $result = SearchByIdResponseMother::default();
+        $collection = new SearchResponseCollection();
+        $collection->add($result);
 
-        $this->shouldSearchByIdAndReturnApiResponse($query->getId(), $result);
+        $this->shouldSearchByIdAndReturnApiResponse($query->getId(), $collection);
         $this->shouldReturnValidSearchResponse($result);
 
-        $this->assertEquals($result, $this->handler->__invoke($query));
+        $this->assertEquals($collection->toArray(), $this->handler->__invoke($query));
     }
 }

@@ -11,10 +11,10 @@ class SearchByFieldsQueryHandler implements QueryHandler
     ) {
     }
 
-    public function __invoke(SearchByFieldsQuery $searchByFieldsQuery): SearchByFieldsResponse
+    public function __invoke(SearchByFieldsQuery $searchByFieldsQuery): array
     {
         $fields = $searchByFieldsQuery->getFields();
 
-        return $this->searchByFields->__invoke($fields);
+        return $this->searchByFields->__invoke($fields)->toArray();
     }
 }

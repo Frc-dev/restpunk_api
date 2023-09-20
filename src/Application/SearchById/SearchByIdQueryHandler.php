@@ -11,10 +11,10 @@ class SearchByIdQueryHandler implements QueryHandler
     ) {
     }
 
-    public function __invoke(SearchByIdQuery $searchByIdQuery): SearchByIdResponse
+    public function __invoke(SearchByIdQuery $searchByIdQuery): array
     {
         $id = $searchByIdQuery->getId();
 
-        return $this->searchById->__invoke($id);
+        return $this->searchById->__invoke($id)->toArray();
     }
 }

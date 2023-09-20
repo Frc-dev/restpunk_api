@@ -11,7 +11,8 @@ class SearchResponse implements Response
     private string $tagline;
     private string $firstBrewed;
     private string $description;
-    private string $image;
+    //api has returned null values
+    private ?string $image;
 
     public function toArray(): array
     {
@@ -85,12 +86,12 @@ class SearchResponse implements Response
         return $this;
     }
 
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 

@@ -4,6 +4,7 @@ namespace App\Tests\Unit\Application\SearchByFields;
 
 use App\Application\SearchByFields\SearchByFields;
 use App\Application\SearchByFields\SearchByFieldsQueryHandler;
+use App\Domain\SearchResponseCollection;
 use App\Tests\Unit\Domain\SearchFieldsMother;
 use App\Tests\Unit\Domain\UnitTestCase;
 
@@ -32,11 +33,13 @@ class SearchByFieldsQueryHandlerTest extends UnitTestCase
         $fields = SearchFieldsMother::withFood('taco');
         $query = SearchByFieldsQueryMother::withFields($fields);
         $result = SearchByFieldsResponseMother::default();
+        $collection = new SearchResponseCollection();
+        $collection->add($result);
 
         $this->shouldReturnValidFields($fields);
-        $this->shouldSearchByFieldsAndReturnApiResponse($fields->toArray(), $result);
+        $this->shouldSearchByFieldsAndReturnApiResponse($fields->toArray(), $collection);
         $this->shouldReturnValidSearchResponse($result);
 
-        $this->assertEquals($result, $this->handler->__invoke($query));
+        $this->assertEquals($collection->toArray(), $this->handler->__invoke($query));
     }
 }
