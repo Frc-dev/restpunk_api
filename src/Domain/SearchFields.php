@@ -12,7 +12,7 @@ class SearchFields
     public function toArray(): array
     {
         return [
-            'food' => $this->food
+            'food' => $this->food,
         ];
     }
 

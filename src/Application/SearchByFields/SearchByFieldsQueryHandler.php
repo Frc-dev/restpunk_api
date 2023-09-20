@@ -8,8 +8,7 @@ class SearchByFieldsQueryHandler implements QueryHandler
 {
     public function __construct(
         private readonly SearchByFields $searchByFields
-    )
-    {
+    ) {
     }
 
     public function __invoke(SearchByFieldsQuery $searchByFieldsQuery): SearchByFieldsResponse

@@ -12,12 +12,10 @@ class ApiController extends AbstractController
     protected MessageBusInterface $queryBus;
     protected ApiResponse $apiResponse;
 
-    public function __construct
-    (
+    public function __construct(
         MessageBusInterface $queryBus,
         ApiResponse $apiResponse
-    )
-    {
+    ) {
         $this->queryBus = $queryBus;
         $this->apiResponse = $apiResponse;
     }

@@ -20,8 +20,7 @@ class SearchByFields
         private readonly FieldsValidator $fieldsValidator,
         private readonly SearchResponseValidator $searchResponseValidator,
         private readonly FilesystemAdapter $cache
-    )
-    {
+    ) {
     }
 
     /**

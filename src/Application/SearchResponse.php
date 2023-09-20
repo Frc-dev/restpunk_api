@@ -21,7 +21,7 @@ class SearchResponse implements Response
           'tagline' => $this->tagline,
           'firstBrewed' => $this->firstBrewed,
           'description' => $this->description,
-          'image' => $this->image
+          'image' => $this->image,
         ];
     }
 

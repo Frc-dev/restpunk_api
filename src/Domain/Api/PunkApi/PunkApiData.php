@@ -9,7 +9,7 @@ trait PunkApiData
 
     //fields as we define in controller do not necessarily match the ones used in the API
     private array $apiFields = [
-        'food'
+        'food',
     ];
 
     private string $apiId = 'id';

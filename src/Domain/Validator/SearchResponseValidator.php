@@ -17,8 +17,7 @@ class SearchResponseValidator
 
     public function __construct(
         private ValidatorInterface $validator
-    )
-    {
+    ) {
         $this->validator = Validation::createValidatorBuilder()->enableAnnotationMapping()->getValidator();
     }
 
@@ -28,30 +27,29 @@ class SearchResponseValidator
         $constraint = new Assert\Collection([
             $this->id => [
                 new Assert\Type('integer'),
-                new Assert\Regex(['pattern' => self::$numbers])
+                new Assert\Regex(['pattern' => self::$numbers]),
             ],
             $this->name => [
-                new Assert\Regex(['pattern' => self::$alphanumeric])
+                new Assert\Regex(['pattern' => self::$alphanumeric]),
             ],
             $this->tagline => [
-                new Assert\Regex(['pattern' => self::$alphanumeric])
+                new Assert\Regex(['pattern' => self::$alphanumeric]),
             ],
             $this->firstBrewed => [
-                new Assert\Regex(['pattern' => self::$date])
+                new Assert\Regex(['pattern' => self::$date]),
             ],
             $this->description => [
-                new Assert\Regex(['pattern' => self::$alphanumeric])
+                new Assert\Regex(['pattern' => self::$alphanumeric]),
             ],
             $this->image => [
-                new Assert\Url()
-            ]
+                new Assert\Url(),
+            ],
         ]);
 
         $errors = $this->validator->validate($response, $constraint);
 
-        if (count($errors) > 0)
-        {
-            throw new ValidationFailedException((string)$errors);
+        if (count($errors) > 0) {
+            throw new ValidationFailedException((string) $errors);
         }
     }
 }

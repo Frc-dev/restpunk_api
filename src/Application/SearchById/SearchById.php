@@ -17,8 +17,7 @@ class SearchById
         private readonly ApiRequest $apiRequest,
         private readonly SearchResponseValidator $searchResponseValidator,
         private readonly FilesystemAdapter $cache
-    )
-    {
+    ) {
     }
 
     /**

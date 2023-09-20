@@ -17,8 +17,7 @@ class FieldsValidator
 
     public function __construct(
         private ValidatorInterface $validator
-    )
-    {
+    ) {
         $this->validator = Validation::createValidatorBuilder()->enableAnnotationMapping()->getValidator();
     }
 
@@ -29,8 +28,8 @@ class FieldsValidator
             $this->fieldFood => [
                 new Assert\NotBlank(),
                 new Assert\Type('string'),
-                new Assert\Regex(self::$alphanumeric)
-            ]
+                new Assert\Regex(self::$alphanumeric),
+            ],
         ]);
 
         $errors = $this->validator->validate($input, $constraints);

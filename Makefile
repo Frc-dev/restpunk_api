@@ -6,3 +6,6 @@ install:
 
 tests-all:
 	php bin/phpunit
+
+cs-fix:
+	tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src

@@ -17,8 +17,7 @@ class PunkApiRequest implements ApiRequest
     public function __construct(
         private readonly HttpClientInterface $client,
         private readonly PunkApiDataMapper $dataMapper
-    )
-    {
+    ) {
     }
 
     public function searchByFields(array $fields): SearchByFieldsResponse
@@ -26,7 +25,7 @@ class PunkApiRequest implements ApiRequest
         $baseUrl = $this->buildBaseUrl();
         $params = $this->buildParams($fields);
 
-        $requestUrl = $baseUrl.$params;
+        $requestUrl = $baseUrl . $params;
 
         $response = $this->callApi($requestUrl);
 
@@ -37,7 +36,7 @@ class PunkApiRequest implements ApiRequest
     {
         $baseUrl = $this->buildBaseUrl();
 
-        $requestUrl = $baseUrl.sprintf('/%s', $id);
+        $requestUrl = $baseUrl . sprintf('/%s', $id);
 
         $response = $this->callApi($requestUrl);
 
@@ -46,7 +45,7 @@ class PunkApiRequest implements ApiRequest
 
     private function buildBaseUrl(): string
     {
-        return $this->baseApiUrl.$this->baseBeersUrl;
+        return $this->baseApiUrl . $this->baseBeersUrl;
     }
 
     private function buildParams(array $fields): string
@@ -54,8 +53,7 @@ class PunkApiRequest implements ApiRequest
         $params = '';
 
         //build get params from fields that match PunkApi allowed fields in the trait
-        foreach ($fields as $name => $value)
-        {
+        foreach ($fields as $name => $value) {
             if (in_array($name, $this->apiFields)) {
                 $params .= sprintf('?%s=%d', $name, $value);
             }
@@ -64,9 +62,9 @@ class PunkApiRequest implements ApiRequest
         return $params;
     }
 
-    public function callApi(string $url , string $method = 'GET'): array
+    public function callApi(string $url, string $method = 'GET'): array
     {
-        try{
+        try {
             $response = $this->client->request(
                 $method,
                 $url

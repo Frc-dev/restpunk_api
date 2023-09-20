@@ -6,8 +6,7 @@ class ValidationFailedException extends DomainError
 {
     public function __construct(
         private readonly string $validation
-    )
-    {
+    ) {
         parent::__construct();
     }
 

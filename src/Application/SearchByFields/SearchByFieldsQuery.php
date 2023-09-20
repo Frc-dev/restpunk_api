@@ -9,8 +9,7 @@ class SearchByFieldsQuery implements Query
 {
     public function __construct(
         private readonly SearchFields $fields
-    )
-    {
+    ) {
     }
 
     public function getFields(): SearchFields

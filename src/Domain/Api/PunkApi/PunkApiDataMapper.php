@@ -11,12 +11,14 @@ class PunkApiDataMapper
     public function buildSearchByFieldsResponseFromApiResponse(array $apiResponse): SearchByFieldsResponse
     {
         $response = new SearchByFieldsResponse();
+
         return $this->setResponseParameters($apiResponse, $response);
     }
 
     public function buildSearchByIdResponseFromApiResponse(array $apiResponse): SearchByIdResponse
     {
         $response = new SearchByIdResponse();
+
         return $this->setResponseParameters($apiResponse, $response);
     }
 
