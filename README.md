@@ -1,13 +1,16 @@
 # restpunk_api
 Simple Symfony app using the Punk API for a technical interview
 
-Instructions (Makefile):
+<h2>Instructions (Makefile)</h2>
 
 
 make install
 
 make run
 
+app is served in localhost:8000
+
+<h2>Tests</h2>
 
 run unit tests with make tests-unit
 
@@ -16,9 +19,9 @@ run api tests with make tests-api
 run all tests with make tests-all
 
 
-endpoints:
+<h2>Endpoints</h2>
 
 
-/search?[key value]
+/search?[key value] -> filter by fields like food and return a list of matching beers
 
-/id/[id]
+/id/[id] -> filter by id and return matching beer
