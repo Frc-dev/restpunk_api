@@ -26,7 +26,6 @@ jobs:
         php-version: '8.1'
         tools: composer:v2
         extensions: pecl_http
-    - uses: symfony-cli/symfony-cli@v5.5.8
     - uses: actions/checkout@v3
     - name: Copy .env.test.local
       run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
@@ -38,6 +37,9 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
+    - name: Install Symfony binary
+      run: |
+        curl -sS https://get.symfony.com/cli/installer | bash
     - name: Run the server
       run: make run
     - name: Install Dependencies
