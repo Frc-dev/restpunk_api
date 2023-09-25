@@ -23,7 +23,8 @@ jobs:
     # uses: shivammathur/setup-php@v2
     - uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2'
+        php-version: '8.1'
+        extensions: pecl_http
     - uses: actions/checkout@v3
     - name: Copy .env.test.local
       run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
