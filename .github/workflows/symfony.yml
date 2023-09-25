@@ -36,6 +36,8 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
+    - name: Run the server
+      run: make run
     - name: Install Dependencies
       run: make install
     - name: Execute all tests
