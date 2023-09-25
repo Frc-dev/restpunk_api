@@ -1,5 +1,7 @@
 # restpunk_api
 
+![main workflow](https://github.com/frc-dev/restpunk_api/actions/workflows/symfony.yml/badge.svg)
+
 Simple Symfony app using the Punk API for a technical interview
 
 <h2>Instructions (Makefile)</h2>
