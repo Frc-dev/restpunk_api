@@ -39,7 +39,8 @@ jobs:
           ${{ runner.os }}-php-
     - name: Install Symfony binary
       run: |
-        curl -sS https://get.symfony.com/cli/installer | bash
+        curl -sS https://get.symfony.com/cli/installer | bash 
+        export PATH="$HOME/.symfony5/bin:$PATH"
     - name: Run the server
       run: make run
     - name: Install Dependencies
